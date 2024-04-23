@@ -6,7 +6,7 @@ Vagrant.configure("2") do |config|
     host1.vm.hostname = "host1"
     host1.vm.network "public_network", bridge: "Intel(R) Ethernet Controller 1226-V"
     host1.vm.provision "shell", path: "provision.sh"
-    
+    host1.vm.provision "file", source: "belichemko_rsa.pub", destination: ".ssh/authorized_keys"
    
   end
 
@@ -15,7 +15,7 @@ Vagrant.configure("2") do |config|
     host2.vm.hostname = "host2"
     host2.vm.network "public_network", bridge: "Intel(R) Ethernet Controller 1226-V"
     host2.vm.provision "shell", path: "provision.sh"
-    
+    host2.vm.provision "file", source: "belichemko_rsa.pub", destination: ".ssh/authorized_keys"
 
   end
 
@@ -24,7 +24,7 @@ Vagrant.configure("2") do |config|
     host3.vm.hostname = "host3"
     host3.vm.network "public_network", bridge: "Intel(R) Ethernet Controller 1226-V"
     host3.vm.provision "shell", path: "provision.sh"
-    
+    host3.vm.provision "file", source: "belichemko_rsa.pub", destination: ".ssh/authorized_keys"
    
   end
 

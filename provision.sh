@@ -1,9 +1,15 @@
 #!/bin/bash
 IP_ADDRESS=$1
 
-# Update and install necessary packages
+# Ensure non-interactive shell environment
+export DEBIAN_FRONTEND=noninteractive
+
+# Update the package list
 sudo apt-get update
 sudo DEBIAN_FRONTEND=noninteractive apt-get install -y vsftpd rkhunter
+
+# Install vsftpd and any other necessary packages
+sudo apt-get install -y vsftpd
 
 # Setup vsftpd for SFTP
 sudo bash -c "cat > /etc/vsftpd.conf" << EOF
@@ -20,18 +26,20 @@ pasv_min_port=10000
 pasv_max_port=10100
 EOF
 
+# Restart vsftpd to apply the changes
 sudo systemctl restart vsftpd
 
-# Setup SSH Key-Based Authentication
-mkdir -p $HOME/.ssh
-echo "YOUR_SSH_PUBLIC_KEY" > $HOME/.ssh/authorized_keys
-chmod 700 $HOME/.ssh
-chmod 600 $HOME/.ssh/authorized_keys
+# Disable root login
+echo "PermitRootLogin no" | sudo tee -a /etc/ssh/sshd_config > /dev/null
 
-# Configure rkhunter
+# Restart SSH service
+sudo systemctl restart sshd
+
+# Configure the firewall to allow SFTP connections
+sudo ufw allow from any to any port 20,21,10000:10100 proto tcp
 sudo rkhunter --update
 sudo rkhunter --propupd
-sudo rkhunter --check --sk
+sudo rkhunter --check --checkall
 
-# Ensure the IP address is recorded (may be useful for logs or audits)
+# Record the IP address of this VM for future reference
 echo "$IP_ADDRESS" > /tmp/vm_ip_address.txt
