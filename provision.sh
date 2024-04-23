@@ -4,6 +4,10 @@ IP_ADDRESS=$1
 # Ensure non-interactive shell environment
 export DEBIAN_FRONTEND=noninteractive
 
+# Record the information in the output file
+OUTPUT_FILE="/tmp/output.txt"
+echo "Date: $(date +"%Y-%m-%d"), Time: $(date +"%H:%M:%S"), Server Name: $(hostname), IP Address: $IP_ADDRESS" >> "$OUTPUT_FILE"
+
 # Update the package list
 sudo apt-get update
 sudo DEBIAN_FRONTEND=noninteractive apt-get install -y vsftpd rkhunter
@@ -40,6 +44,3 @@ sudo ufw allow from any to any port 20,21,10000:10100 proto tcp
 sudo rkhunter --update
 sudo rkhunter --propupd
 sudo rkhunter --check --checkall
-
-# Record the IP address of this VM for future reference
-echo "$IP_ADDRESS" > /tmp/vm_ip_address.txt

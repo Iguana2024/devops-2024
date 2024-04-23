@@ -1,31 +1,43 @@
 Vagrant.configure("2") do |config|
+  config.vm.box = "ubuntu/focal64"
+  
+  network_subnet = "192.168.56."
+  
+  # Assuming provision.sh is in the same directory as the Vagrantfile
+  provision_script_path = "provision.sh" 
 
- 
-  config.vm.define "host1" do |host1|
-    host1.vm.box = "bento/ubuntu-20.04"
-    host1.vm.hostname = "host1"
-    host1.vm.network "public_network", bridge: "Intel(R) Ethernet Controller 1226-V"
-    host1.vm.provision "shell", path: "provision.sh"
-    host1.vm.provision "file", source: "belichemko_rsa.pub", destination: ".ssh/authorized_keys"
-   
+  (1..3).each do |i|
+    config.vm.define "vm#{i}" do |vm|
+      vm.vm.hostname = "sftp-server-#{i}"
+      vm.vm.network "private_network", ip: "#{network_subnet}10#{i}"
+      
+      # Provisioning to copy public keys to authorized_keys
+      vm.vm.provision "shell", inline: <<-SHELL
+        # Ensure the SSH directory exists
+        mkdir -p /home/vagrant/.ssh
+        
+        # Set permissions for the SSH directory
+        chmod 700 /home/vagrant/.ssh
+        
+        # Copy keys from public_keys folder to the authorized_keys file
+        cat /vagrant/public_keys/* >> /home/vagrant/.ssh/authorized_keys
+        
+        # Ensure correct permissions on authorized_keys
+        chmod 600 /home/vagrant/.ssh/authorized_keys
+        
+        # Ensure the owner is correct, which should be 'vagrant' for the default Vagrant setup
+        chown -R vagrant:vagrant /home/vagrant/.ssh
+      SHELL
+
+      # Run provision.sh script
+      vm.vm.provision "shell", path: provision_script_path, args: ["$(hostname -I | cut -d' ' -f1)"]
+
+      # Configure cron job
+      vm.vm.provision "shell", inline: <<-SHELL
+        CRON_JOB="*/5 * * * * /vagrant/#{provision_script_path} \$(hostname -I | cut -d' ' -f1)"
+        (crontab -u vagrant -l | grep -v -F '/vagrant/#{provision_script_path}' | crontab -u vagrant -)  # Remove all existing entries for the script
+        (crontab -u vagrant -l 2>/dev/null; echo "$CRON_JOB") | crontab -u vagrant -  # Add the correct entry
+      SHELL
+    end
   end
-
-  config.vm.define "host2" do |host2|
-    host2.vm.box = "bento/ubuntu-20.04"
-    host2.vm.hostname = "host2"
-    host2.vm.network "public_network", bridge: "Intel(R) Ethernet Controller 1226-V"
-    host2.vm.provision "shell", path: "provision.sh"
-    host2.vm.provision "file", source: "belichemko_rsa.pub", destination: ".ssh/authorized_keys"
-
-  end
-
-  config.vm.define "host3" do |host3|
-    host3.vm.box = "bento/ubuntu-20.04"
-    host3.vm.hostname = "host3"
-    host3.vm.network "public_network", bridge: "Intel(R) Ethernet Controller 1226-V"
-    host3.vm.provision "shell", path: "provision.sh"
-    host3.vm.provision "file", source: "belichemko_rsa.pub", destination: ".ssh/authorized_keys"
-   
-  end
-
 end
