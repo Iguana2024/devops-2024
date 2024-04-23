@@ -10,6 +10,11 @@ Vagrant.configure("2") do |config|
     config.vm.define "vm#{i}" do |vm|
       vm.vm.hostname = "sftp-server-#{i}"
       vm.vm.network "private_network", ip: "#{network_subnet}10#{i}"
+
+      vm.vm.provider "virtualbox" do |vb|
+        vb.cpus = 1
+        vb.memory = 2048
+      end
       
       # Provisioning to copy public keys to authorized_keys
       vm.vm.provision "shell", inline: <<-SHELL
@@ -34,10 +39,15 @@ Vagrant.configure("2") do |config|
 
       # Configure cron job
       vm.vm.provision "shell", inline: <<-SHELL
-        CRON_JOB="*/5 * * * * /vagrant/#{provision_script_path} \$(hostname -I | cut -d' ' -f1)"
-        (crontab -u vagrant -l | grep -v -F '/vagrant/#{provision_script_path}' | crontab -u vagrant -)  # Remove all existing entries for the script
-        (crontab -u vagrant -l 2>/dev/null; echo "$CRON_JOB") | crontab -u vagrant -  # Add the correct entry
-      SHELL
+  # Define the cron job command with the correct path and dynamically get the IP address
+  CRON_JOB="*/5 * * * * /vagrant/#{provision_script_path} \$(hostname -I | cut -d' ' -f1)"
+
+  # Remove any existing cron job that might have been set from this script to avoid duplicates
+  (crontab -u vagrant -l | grep -v -F '/vagrant/#{provision_script_path}' | crontab -u vagrant -)
+
+  # Add the new cron job to the vagrant user's crontab
+  (echo "$CRON_JOB" ; crontab -u vagrant -l 2>/dev/null) | crontab -u vagrant -
+SHELL
     end
   end
 end
