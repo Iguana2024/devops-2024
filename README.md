@@ -1,4 +1,5 @@
-# VAGRANT :computer:
+![Vagrant Logo](/images/vagrant-logo.png)
+# VAGRANT 
 > Configure your VM instances quickly and securely using Vagrant.
 
 ![Vagrant Logo](/images/vagrant-logo.png)
