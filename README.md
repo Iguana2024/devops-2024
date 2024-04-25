@@ -2,7 +2,6 @@
 # VAGRANT 
 > Configure your VM instances quickly and securely using Vagrant.
 
-
 This Vagrant project sets up a development environment within VirtualBox, creating three Ubuntu 20.04 machines. It's tailored for managing security credentials, enabling users to log in, and virtual machines to communicate securely over SSH. Additionally, it's equipped to perform security audits with the rkHunter tool.
 
 ## Requirements
@@ -15,28 +14,31 @@ Before diving in, make sure you've got the necessary tools:
 
 ## :wrench: Installation and Preparation
 
-### 1. Clone the Repository
-```
-git clone https://github.com/Iguana2024/devops-2024.git
-cd devops-2024
-```
-### :key:2. Generate rsa key pair:
-```
-#The keys must be in format username_rsa and username.pub
-ssh-keygen -t rsa -b 4096
-```
-### 3. Place public key in public_keys dir and for private key create private_keys dir
+1. Clone the Repository:
+    ```shell
+    git clone https://github.com/Iguana2024/devops-2024.git
+    cd devops-2024
+    ```
 
-### 4. After everything is done:
-```
-#navigate back to root dir
-vagrant up
-```
+2. Generate rsa key pair (The keys must be in format `username_rsa` and `username.pub`):
+    ```shell
+    ssh-keygen -t rsa -b 4096
+    ```
 
-## Common problems
-### After receiving next message
+3. Place public key in `public_keys` directory and for private key, create `private_keys` directory.
+
+4. After everything is set up, navigate back to the root directory and launch the virtual machines:
+    ```shell
+    vagrant up
+    ```
+
+## Common Problems
+
+If you encounter the following message:
 ![Problem1](/images/problem1.png)
-### Be sure to type in the command
-```
-ssh-keygen -R ip_of_the_machine
-```
+
+Be sure to type in the command:
+    ```shell
+    ssh-keygen -R ip_of_the_machine
+    ```
+
