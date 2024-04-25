@@ -15,13 +15,13 @@ Before diving in, make sure you've got the necessary tools:
 ## :wrench: Installation and Preparation
 
 1. Clone the Repository:
-    ```shell
+    ```
     git clone https://github.com/Iguana2024/devops-2024.git
     cd devops-2024
     ```
 
 2. Generate rsa key pair (The keys must be in format `username_rsa` and `username.pub`):
-    ```shell
+    ```
     ssh-keygen -t rsa -b 4096
     ```
 
