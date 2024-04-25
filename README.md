@@ -1,17 +1,21 @@
-# VAGRANT
-> Configure you VM instances quickly and securely using Vagrant.
+# VAGRANT :computer:
+> Configure your VM instances quickly and securely using Vagrant.
 
-This Vagrant project sets up an environment in VirtualBox for 3 machines with Ubuntu 20.04.It also manage security credentials for users to login and virtual machines to communicate with each other via ssh
-as well as doing the security audit using rkhuner tool. 
+![Vagrant Logo](/assets/vagrant-logo.png)
 
-## Requirements
-Before you begin, ensure you have met the following requirements:
-- **Vagrant**: Download and install Vagrant from [Vagrant](https://www.vagrantup.com/downloads.html).
-- **VirtualBox**: Download and install VirtualBox from [VirtualBox](https://www.virtualbox.org/wiki/Downloads). Alternatively, you can use any other provider that Vagrant supports.
-- **Git**: Download and install Git from [Git](https://git-scm.com/downloads).
+This Vagrant project sets up a development environment within VirtualBox, creating three Ubuntu 20.04 machines. It's tailored for managing security credentials, enabling users to log in, and virtual machines to communicate securely over SSH. Additionally, it's equipped to perform security audits with the rkHunter tool.
 
-## Installation and Preperation
-### Clone the repo and access it:
+## :key: Requirements
+
+Before diving in, make sure you've got the necessary tools:
+
+- **Vagrant**: Grab the latest version of Vagrant from [here](https://www.vagrantup.com/downloads.html).
+- **VirtualBox**: VirtualBox is our go-to provider. Download it from [VirtualBox's site](https://www.virtualbox.org/wiki/Downloads).
+- **Git**: You'll need Git for version control. If you haven't yet, download it from [Git's official site](https://git-scm.com/downloads).
+
+## :wrench: Installation and Preparation
+
+### 1. Clone the Repository
 ```
 git clone https://github.com/Iguana2024/devops-2024.git
 cd devops-2024
