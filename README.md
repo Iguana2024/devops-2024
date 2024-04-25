@@ -1,4 +1,4 @@
-![Vagrant Logo]((https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.morot.fr%2Fvagrant%2F&psig=AOvVaw366l_Asnk-kfhdEKquojoE&ust=1714157480840000&source=images&cd=vfe&opi=89978449&ved=0CBIQjRxqFwoTCIjWnLeE3oUDFQAAAAAdAAAAABAI))
+![Vagrant Logo](/images/vagrant-logo.png)
 # VAGRANT 
 > Configure your VM instances quickly and securely using Vagrant.
 
