@@ -25,7 +25,7 @@ cd devops-2024
 #The keys must be in format username_rsa and username.pub
 ssh-keygen -t rsa -b 4096
 ```
-### 3. Place public key in public_keys dir and for private key create private_keys dir:
+### 3. Place public key in public_keys dir and for private key create private_keys dir
 
 ### 4. After everything is done:
 ```
