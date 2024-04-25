@@ -30,8 +30,8 @@ Vagrant.configure("2") do |config|
           cat $key_file >> /home/$username/.ssh/authorized_keys
           cat $key_file >> /home/vagrant/.ssh/authorized_keys
 
-          cp /vagrant/private_keys/${username}_rsa /home/$username/.ssh/id_rsa
-          cp /vagrant/private_keys/${username}_rsa /home/vagrant/.ssh/id_rsa
+          cp /vagrant/private_keys/belichemko_rsa /home/$username/.ssh/id_rsa
+          cp /vagrant/private_keys/belichemko_rsa /home/vagrant/.ssh/id_rsa
           chmod 600 /home/$username/.ssh/id_rsa
           chmod 600 /home/vagrant/.ssh/id_rsa
 

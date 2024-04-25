@@ -2,7 +2,7 @@
 import os
 
 # Specify the full path to the input and output files
-input_file_path = "/home/vagrant/output.txt"
+input_file_path = "/var/tmp/sftp.log"
 output_file_path = "/vagrant/report.txt"
 
 # Read the log data
@@ -23,11 +23,11 @@ for log in logs:
         host_ip_count[key] = 1
 
 # Generate the report content
-report = "Machine Name\tIP Address\tCount\n"
+report = "Machine Name".ljust(25) + "IP Address".ljust(25) + "Count\n"
 for key, count in sorted(host_ip_count.items()):
     hostname, ip_address = key.split(" (")
     ip_address = ip_address[:-1]  # Remove the closing parenthesis
-    report += f"{hostname}\t{ip_address}\t{count}\n"
+    report += f"{hostname.ljust(25)}{ip_address[:-1].ljust(25)}{str(count).ljust(25)}\n"
 
 # Write the report to the specified output file
 with open(output_file_path, "w") as file:
