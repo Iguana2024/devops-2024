@@ -28,3 +28,7 @@ ssh-keygen -t rsa -b 4096
 #navigate back to root dir
 vagrant up
 ```
+
+## Common problems
+### After receiving next message
+![Problem1](/images/problem1.png)
