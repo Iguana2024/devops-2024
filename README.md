@@ -32,3 +32,7 @@ vagrant up
 ## Common problems
 ### After receiving next message
 ![Problem1](/images/problem1.png)
+### Be sure to type in the command
+```
+ssh-keygen -R ip_of_the_machine
+```
