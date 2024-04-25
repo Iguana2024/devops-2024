@@ -35,6 +35,7 @@ Before diving in, make sure you've got the necessary tools:
 ## Common Problems
 
 If you encounter the following message:
+
 ![Problem1](/images/problem1.png)
 
 Be sure to type in the command:
