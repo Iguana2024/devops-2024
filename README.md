@@ -16,14 +16,14 @@ Before you begin, ensure you have met the following requirements:
 git clone https://github.com/Iguana2024/devops-2024.git
 cd devops-2024
 ```
-###Generate rsa key pair:
+### Generate rsa key pair:
 ```
 #The keys must be in format username_rsa and username.pub
 ssh-keygen -t rsa -b 4096
 ```
-###Place public key in public_keys dir and for private key create private_keys dir:
+### Place public key in public_keys dir and for private key create private_keys dir:
 
-###After everything is done:
+### After everything is done:
 ```
 #navigate back to root dir
 vagrant up
