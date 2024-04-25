@@ -39,7 +39,7 @@ If you encounter the following message:
 ![Problem1](/images/problem1.png)
 
 Be sure to type in the command:
-    ```shell
+    ```
     ssh-keygen -R ip_of_the_machine
     ```
 
