@@ -2,6 +2,7 @@
   <img src="/images/vagrant-logo.png" alt="Vagrant Logo">
 </p>
 <p align="center"># VAGRANT </p>
+
 > Configure your VM instances quickly and securely using Vagrant.
 
 This Vagrant project sets up a development environment within VirtualBox, creating three Ubuntu 20.04 machines. It's tailored for managing security credentials, enabling users to log in, and virtual machines to communicate securely over SSH. Additionally, it's equipped to perform security audits with the rkHunter tool.
