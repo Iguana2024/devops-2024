@@ -5,7 +5,7 @@
 
 This Vagrant project sets up a development environment within VirtualBox, creating three Ubuntu 20.04 machines. It's tailored for managing security credentials, enabling users to log in, and virtual machines to communicate securely over SSH. Additionally, it's equipped to perform security audits with the rkHunter tool.
 
-## :key: Requirements
+## Requirements
 
 Before diving in, make sure you've got the necessary tools:
 
@@ -20,7 +20,7 @@ Before diving in, make sure you've got the necessary tools:
 git clone https://github.com/Iguana2024/devops-2024.git
 cd devops-2024
 ```
-### 2. Generate rsa key pair:
+### :key:2. Generate rsa key pair:
 ```
 #The keys must be in format username_rsa and username.pub
 ssh-keygen -t rsa -b 4096
