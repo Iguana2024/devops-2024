@@ -11,7 +11,7 @@ Before you begin, ensure you have met the following requirements:
 - **Git**: Download and install Git from [Git](https://git-scm.com/downloads).
 
 ## Installation and Preperation
-###Clone the repo and access it:
+### Clone the repo and access it:
 ```
 git clone https://github.com/Iguana2024/devops-2024.git
 cd devops-2024
