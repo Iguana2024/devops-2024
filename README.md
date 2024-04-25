@@ -1,4 +1,4 @@
-<p align="center">![Vagrant Logo](/images/vagrant-logo.png)</p>
+<p align="center"> ![Vagrant Logo](/images/vagrant-logo.png) </p>
 <p align="center"># VAGRANT </p>
 > Configure your VM instances quickly and securely using Vagrant.
 
