@@ -9,16 +9,31 @@
 The project involves deploying three virtual machines with installed SFTP servers, as well as configuring security and conducting system auditing using rkhunter. Each machine has key-based access, and scheduled Bash and Python tasks are implemented for automatic creation of files on neighboring SFTP servers and log analysis.
 
 
-## Structure and code
-Project consists of 4 main files:
--Vagrantfile
--crontas.sh
--provision.sh
--report.py
+## Structure and Code
 
-And 2 main directories:
--public_keys(save your puplic here in format username.pub)
--private_keys(save your private key here )
+The project consists of four main files and two directories, organized as follows:
+
+### Files
+
+1. **Vagrantfile**  
+   Configuration file for Vagrant, used to set up and provision the virtual development environment.
+
+2. **crontas.sh**  
+   Shell script that sets up cron jobs, typically used for scheduling regular tasks such as backups or updates.
+
+3. **provision.sh**  
+   Script executed by Vagrant upon setting up the VM, used to install and configure necessary software and environments.
+
+4. **report.py**  
+   Python script that generates reports, potentially aggregating data from various sources and presenting it in a specified format.
+
+### Directories
+
+1. **public_keys**  
+   Store your public SSH keys here. Each key should be saved in the format `username.pub`.
+
+2. **private_keys**  
+   Directory for storing private SSH keys. It is crucial to secure this directory using appropriate permissions and security measures.
 
 ## Requirements
 
