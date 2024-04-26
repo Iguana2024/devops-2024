@@ -64,8 +64,16 @@ Before diving in, make sure you've got the necessary tools:
 3. Place public key in `public_keys` directory and for private key, create `private_keys` directory
 
 4. After everything is set up, navigate back to the root directory and launch the virtual machines
-    ```shell
+    ```
     vagrant up
+    ```
+
+5. After machines are up try to login and ckeck if everything is working:
+    ```
+    ssh -i /private_keys/your_ssh_key username@ip_of_the_machine
+    cd /vagrant
+    ls -la #check for the file report.txt
+    cat report.txt # you should see the name of the host as well as the ip of it and count of logs
     ```
 
 ## Common Problems
