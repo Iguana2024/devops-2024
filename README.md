@@ -19,15 +19,15 @@ The project consists of four main files and two directories, organized as follow
 
 1. **Vagrantfile**  
    Configuration file for Vagrant, used to set up and provision the virtual development environment.
-   Replace `belichemko_rsa` on line 33 and 34 with appropriate name of your private key
+   Replace `belichemko_rsa` on line 33 and 34 with appropriate name of your private key.
 2. **crontas.sh**  
-   Shell script that sets up cron jobs, typically used for scheduling regular tasks such as backups or updates.
+   Shell script that creates logs on other 2 machines.
 
 3. **provision.sh**  
    Script executed by Vagrant upon setting up the VM, used to install and configure necessary software and environments.
 
 4. **report.py**  
-   Python script that generates reports, potentially aggregating data from various sources and presenting it in a specified format.
+   Python script that generates report from the logs.
 
 ### Directories
 
