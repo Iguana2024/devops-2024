@@ -8,6 +8,17 @@
 ## Description
 The project involves deploying three virtual machines with installed SFTP servers, as well as configuring security and conducting system auditing using rkhunter. Each machine has key-based access, and scheduled Bash and Python tasks are implemented for automatic creation of files on neighboring SFTP servers and log analysis.
 
+
+## Structure and code
+Project consists of 4 main files:
+-Vagrantfile
+-crontas.sh
+-provision.sh
+-report.py
+And 2 main directories:
+-public_keys(save your puplic here in format username.pub)
+-private_keys(save your private key here )
+
 ## Requirements
 
 Before diving in, make sure you've got the necessary tools:
