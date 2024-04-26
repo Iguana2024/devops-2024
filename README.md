@@ -1,4 +1,4 @@
-<p align="center">
+<p align="left">
   <img src="/images/vagrant-logo.png" alt="Vagrant Logo">
 </p>
 
