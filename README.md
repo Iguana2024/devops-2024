@@ -8,7 +8,7 @@
 ## Description
 The project involves deploying three virtual machines with installed SFTP servers, as well as configuring security and conducting system auditing using rkhunter. Each machine has key-based access, and scheduled Bash and Python tasks are implemented for automatic creation of files on neighboring SFTP servers and log analysis.
 
-##Preset
+## Preset
 You need to create directory private_keys manually and set you generated private key there.
 
 ## Structure and Code
