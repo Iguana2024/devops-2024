@@ -37,8 +37,6 @@ The project consists of four main files and two directories, organized as follow
 2. **private_keys**  
    Directory for storing private SSH keys. It is crucial to secure this directory using appropriate permissions and security measures.
 
-### Preset
-You need to create directory private_keys manually and set you generated private key there.
 
 
 
