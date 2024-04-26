@@ -2,9 +2,6 @@
   <img src="/images/vagrant-logo.png" alt="Vagrant Logo">
 </p>
 
-<div align="center">
-  <h1>VAGRANT</h1>
-</div>
 
 > Configure your VM instances quickly and securely using Vagrant.
 
