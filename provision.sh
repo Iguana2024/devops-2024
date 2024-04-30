@@ -1,5 +1,5 @@
 #!/bin/bash
-       
+
 sudo apt-get update
 
 
@@ -50,3 +50,5 @@ sudo apt install python3
 
 sudo chown -R vagrant:vagrant /home/vagrant
 sudo chmod 644 /home/vagrant/output.txt
+
+
