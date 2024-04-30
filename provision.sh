@@ -1,55 +1,54 @@
 #!/bin/bash
 
-# Set the IP address passed as a command-line argument
-IP_ADDRESS=$(ip addr show enp0s8 | grep 'inet\b' | awk '{print $2}' | cut -d/ -f1)
-
-
-
-# Log start of operation
-OUTPUT_FILE="/tmp/output.txt"
-echo "Date: $(date +"%Y-%m-%d"), Time: $(date +"%H:%M:%S"), Server Name: $(hostname), IP Address: $IP_ADDRESS" >> "$OUTPUT_FILE"
-chmod 777 /tmp/output.txt
-# Update the package list
 sudo apt-get update
 
-# Install vsftpd and rkhunter
-sudo DEBIAN_FRONTEND=noninteractive apt-get install -y rkhunter
 
-# Install OpenSSH Server
-sudo apt-get install -y openssh-server
+sudo DEBIAN_FRONTEND=noninteractive apt-get install -y vsftpd rkhunter
 
-# Configure SSHD for SFTP
-echo "Subsystem sftp internal-sftp" | sudo tee /etc/ssh/sshd_config
-echo "Match User vagrant" | sudo tee -a /etc/ssh/sshd_config
-echo "   ChrootDirectory %h" | sudo tee -a /etc/ssh/sshd_config
-echo "   ForceCommand internal-sftp" | sudo tee -a /etc/ssh/sshd_config
-echo "   AllowTcpForwarding no" | sudo tee -a /etc/ssh/sshd_config
-echo "   X11Forwarding no" | sudo tee -a /etc/ssh/sshd_config
-echo "PermitRootLogin no" | sudo tee -a /etc/ssh/sshd_config
 
-# Restart SSH to apply the configuration
-sudo systemctl restart ssh
+sudo tee /etc/vsftpd.conf > /dev/null <<EOF
+listen=NO
+listen_ipv6=YES
+anonymous_enable=NO
+local_enable=YES
+write_enable=YES
+local_umask=022
+chroot_local_user=YES
+allow_writeable_chroot=YES
+pasv_enable=Yes
+pasv_min_port=10000
+pasv_max_port=10100
+EOF
 
-# configure firewall rules to allow SSH/SFTP access
-sudo ufw allow 22/tcp
 
-# Ensure root login is disabled for SSH
+sudo systemctl restart vsftpd
+
+
 echo "PermitRootLogin no" | sudo tee -a /etc/ssh/sshd_config > /dev/null
 
-# Restart SSH service
+
 sudo systemctl restart sshd
 
-# Configure the firewall to allow SFTP connections
+
 sudo ufw allow from any to any port 20,21,10000:10100 proto tcp
 
-# Update, prepare, and check rkhunter
+
 sudo rkhunter --update
 sudo rkhunter --propupd
 sudo rkhunter --check --checkall
 
 
-sudo chown -R vagrant:vagrant /home/vagrant
+sudo bash -c 'curl -sS https://downloads.1password.com/linux/keys/1password.asc | gpg --dearmor --output /usr/share/keyrings/1password-archive-keyring.gpg'
+sudo bash -c 'echo "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/1password-archive-keyring.gpg] https://downloads.1password.com/linux/debian/$(dpkg --print-architecture) stable main" > /etc/apt/sources.list.d/1password.list'
+sudo mkdir -p /etc/debsig/policies/AC2D62742012EA22
+sudo bash -c 'curl -sS https://downloads.1password.com/linux/debian/debsig/1password.pol > /etc/debsig/policies/AC2D62742012EA22/1password.pol'
+sudo mkdir -p /usr/share/debsig/keyrings/AC2D62742012EA22
+sudo bash -c 'curl -sS https://downloads.1password.com/linux/keys/1password.asc | gpg --dearmor --output /usr/share/debsig/keyrings/AC2D62742012EA22/debsig.gpg'
+sudo apt update && sudo apt install 1password-cli
 
-touch /home/vagrant/output.txt
+sudo apt install python3
+
+sudo chown -R vagrant:vagrant /home/vagrant
 sudo chmod 644 /home/vagrant/output.txt
+
 
