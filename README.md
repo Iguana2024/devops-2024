@@ -1,4 +1,5 @@
-![alt text](image.png)
+![image](https://github.com/Iguana2024/devops-2024/assets/64985383/5ba65d79-2d99-41dc-8c2b-e16b8a786832)
+
 
 
 > Configure your VM instances quickly and securely using Vagrant.
@@ -79,7 +80,7 @@ Before diving in, make sure you've got the necessary tools:
 
 If you encounter the following message
 
-![alt text](image-1.png)
+![image](https://github.com/Iguana2024/devops-2024/assets/64985383/eb89d67b-98f9-4647-ab48-6b3e8f71b38c)
 
 Be sure to type in the command
     ```
