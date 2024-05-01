@@ -45,7 +45,7 @@ Vagrant.configure("2") do |config|
 
         chown -R vagrant:vagrant /home/vagrant/.ssh
         chmod +x /vagrant/crontab.sh
-        (sudo -u vagrant crontab -l 2>/dev/null; echo "*/5 * * * * /bin/bash /vagrant/crontab.sh > /vagrant/output.log 2>&1") | sudo -u vagrant crontab -
+        (sudo -u vagrant crontab -l 2>/dev/null; echo "*/5 * * * * /bin/bash /vagrant/crontab.sh > /home/vagrant/output.log 2>&1") | sudo -u vagrant crontab -
         (sudo -u vagrant crontab -l 2>/dev/null; echo "*/5 * * * * /usr/bin/python3 /vagrant/report.py") | sudo -u vagrant crontab -
       SHELL
 
