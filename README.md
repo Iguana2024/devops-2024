@@ -49,10 +49,11 @@ Before diving in, make sure you've got the necessary tools:
 
 ## :wrench: Runbook
 
-1. Clone the Repository
+1. Clone the Repository and create machine_keys dir
     ```
     git clone https://github.com/Iguana2024/devops-2024.git
     cd devops-2024
+    mkdir machine_keys
     ```
 
 2. Generate rsa key pair (The public key must be in format `keyname.pub` and  private key in format `keyname_rsa`) and place them in `machine_keys` directory
