@@ -30,7 +30,7 @@ echo "PermitRootLogin no" | sudo tee -a /etc/ssh/sshd_config > /dev/null
 sudo systemctl restart sshd
 
 
-sudo ufw allow from any to any port 20,21,10000:10100 proto tcp
+sudo ufw allow from any to any port 22 proto tcp
 
 
 sudo rkhunter --update
