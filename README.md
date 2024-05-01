@@ -73,8 +73,8 @@ Before diving in, make sure you've got the necessary tools:
     ```
     ssh -i /path/to/your_second_private_key your_username@ip_of_the_machine
     cd /vagrant
-    ls -la #check for the file report.txt
-    cat report.txt # you should see the name of the host as well as the ip of it and count of logs
+    ls -la #check for the files report_ip_of_the_machine.txt
+    cat report_ip_of_the_machine.txt # you should see the name of the host as well as the ip of it and count of logs
     ```
 
 ## Common Problems
